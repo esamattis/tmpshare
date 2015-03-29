@@ -2,18 +2,23 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Share once</title>
+        <title>tmpshare</title>
     </head>
     <body>
 
-        <h1>Share files</h1>
+        <h1>tmpshare</h1>
+        <p>
+            Easily share temporary files over http. <a href="https://github.com/epeli/tmpshare">Read more</a>.
+        </p>
+
+        <h2>Share files</h2>
 
         <form method=post action="" enctype="multipart/form-data">
             <input type=file name=file multiple>
             <input type=submit>
         </form>
 
-        <h1>Share text</h1>
+        <h2>Share text</h2>
 
         <form action="" method=post >
             <input placeholder="unnamed.txt" type=text name=filename>
@@ -23,7 +28,7 @@
             <input type=submit>
         </form>
 
-        <h1>From terminal</h1>
+        <h2>From terminal</h2>
 
 <pre>
 curl -T file.txt <%= currentURL %>
