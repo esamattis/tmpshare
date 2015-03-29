@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Share once</title>
+    </head>
+    <body>
+
+        <h1>Share files</h1>
+
+        <form method=post action="" enctype="multipart/form-data">
+            <input type=file name=file multiple>
+            <input type=submit>
+        </form>
+
+        <h1>Share text</h1>
+
+        <form action="" method=post >
+            <input placeholder="unnamed.txt" type=text name=filename>
+            <br>
+            <textarea placeholder="File content" name=content rows=20 cols=100></textarea>
+            <br>
+            <input type=submit>
+        </form>
+
+        <h1>From terminal</h1>
+
+<pre>
+curl -T file.txt <%= currentURL %>
+
+curl -F file=@file.txt -F file2=@file2.txt <%= currentURL %>
+
+cat | curl -T - <%= currentURL %>/custom.txt
+</pre>
+
+    </body>
+</html>

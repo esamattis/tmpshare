@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%= filename %></title>
+    </head>
+    <body>
+        <h1><%= filename %></h1>
+
+        <p>This file can be downloaded only once.</p>
+
+        <p>
+        <form action="" method=post>
+            <input type=hidden name=key id=key>
+            <input type=submit value="Click here to download">
+        </form>
+
+        </p>
+
+        <p>
+            From terminal you can use wget or curl:
+        </p>
+
+<pre id="terminal">
+wget --post-data='key=KEY' '<%= downloadURL %>'
+
+curl -d key=KEY -O '<%= downloadURL %>'
+</pre>
+
+
+<hr>
+
+<a href="<%= baseUrl %>">Upload new file</a>
+
+
+        <script charset="utf-8">
+            var key = window.location.hash.slice(1);
+            document.getElementById("key").value = key;
+            var t = document.getElementById("terminal");
+            t.innerHTML = t.innerHTML.replace(/KEY/g, key);
+        </script>
+
+    </body>
+</html>
