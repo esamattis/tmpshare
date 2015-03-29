@@ -8,6 +8,10 @@ Like https://transfer.sh/ but with following differences:
 - Shared files are deleted immediately once they are downloaded
 - Files are encrypted on the server no encryption key is saved on the server
 
+## Installation
+
+    npm install tmpshare
+
 ## Usage
 
 Uploads can be done using the buildin form or curl:
