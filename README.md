@@ -27,7 +27,7 @@ Uploads can be done using the buildin form or curl:
 ## Express middleware
 
 ```js
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 var app = express();
 
