@@ -12,6 +12,7 @@ var url = require("url");
 var multiparty = require("multiparty");
 var sanitize = require("sanitize-filename");
 var stream = require("stream");
+var bodyParser = require('body-parser');
 
 var randomBytes = Promise.promisify(crypto.randomBytes);
 var stat = Promise.promisify(fs.stat);
@@ -23,8 +24,13 @@ module.exports = function(config) {
     fs.writeFileSync(testFile, "just testing");
     fs.unlinkSync(testFile);
 
-    var app = express.Router();
+    var app = express();
+    app.set("views", __dirname + "/views");
+    app.use(bodyParser());
 
+    app.put("/", function(req, res, next) {
+        res.send("Add trailing slash!\n");
+    });
 
     app.get("/", function(req, res, next) {
         var currentURL = url.format({
@@ -33,10 +39,13 @@ module.exports = function(config) {
             pathname: req.originalUrl
         });
 
+        if (!/\/$/.test(currentURL)) {
+            return res.redirect(req.originalUrl + "/");
+        }
+
         res.render("form.ejs", {
             currentURL: currentURL
         });
-
 
     });
 
