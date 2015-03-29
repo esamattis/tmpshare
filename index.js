@@ -29,7 +29,7 @@ module.exports = function(config) {
     app.use(bodyParser());
 
     app.put("/", function(req, res, next) {
-        res.send("Add trailing slash!\n");
+        res.status(400).send("Add trailing slash!\n");
     });
 
     app.get("/", function(req, res, next) {
