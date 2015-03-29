@@ -19,3 +19,21 @@ Uploads can be done using a buildin form or curl:
     http://example.com/download/2015-03-29-14-58-bd7dd3cfb3/file.txt#4806f599e6d104b2ab93c709db2c3769d576eb8d
     http://example.com/download/2015-03-29-14-58-e600a5b4fa/file2.txt#87fa049560d6b3f4b9fa77d1708dc6b399eb3d4c
 
+
+## Standalone server
+
+    tmpshare --port 1234 ./uploads
+
+## Express middleware
+
+```js
+var bodyParser = require('body-parser');
+
+var app = express();
+
+app.use(bodyParser());
+
+app.use("/tmpshare", require("tmpshare")({
+    dir: __dirname + "/uploads"
+}));
+```
