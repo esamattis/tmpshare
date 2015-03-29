@@ -10,7 +10,7 @@ Like https://transfer.sh/ but with following differences:
 
 ## Usage
 
-Uploads can be done using a buildin form or curl:
+Uploads can be done using the buildin form or curl:
 
     $ curl -T file.txt example.com
     http://example.com/download/2015-03-29-14-57-a25bd309c8/file.txt#6028503d10954b73ab57e326997bca0b67c5b061
