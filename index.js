@@ -72,6 +72,7 @@ module.exports = function(config) {
             return new Promise(function(resolve, reject){
                 stream.on("error", reject)
                 .pipe(crypto.createCipher(algorithm, key))
+                .on("error", reject)
                 .pipe(fs.createWriteStream(filePath))
                 .on("error", reject)
                 .on("close", resolve);
