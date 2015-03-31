@@ -93,7 +93,8 @@ module.exports = function(config) {
 
         form.on("part", function(part) {
             if (!part.filename) {
-                part.resume();
+                // Ignore normal fields
+                return part.resume();
             }
             files.push(writeStream(part, part.filename).then(function(info) {
                 return createPreviewURL(req, info, part.filename);
