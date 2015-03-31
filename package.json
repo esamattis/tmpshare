@@ -1,7 +1,7 @@
 {
   "name": "tmpshare",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easily share temporary files over http",
   "main": "index.js",
   "bin": {
     "tmpshare": "./server.js"
