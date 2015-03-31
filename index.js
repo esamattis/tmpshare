@@ -24,7 +24,7 @@ function isCurl(req) {
 
 
 module.exports = function(config) {
-    var testFile = path.join(config.dir, "share-once-test-file");
+    var testFile = path.join(config.dir, "tmpshare-test-file");
     fs.writeFileSync(testFile, "just testing");
     fs.unlinkSync(testFile);
 
