@@ -31,11 +31,9 @@ Uploads can be done using the buildin form or curl:
 ## Express middleware
 
 ```js
-var bodyParser = require("body-parser");
-
 var app = express();
 
-app.use("/tmpshare", require("tmpshare")({
+app.use("/tmp", require("tmpshare")({
     dir: __dirname + "/uploads"
 }));
 ```
