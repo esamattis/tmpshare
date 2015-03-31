@@ -9,6 +9,8 @@
 
         <p>This file can be downloaded only once.</p>
 
+
+        <div id="download-options">
         <p>
         <form action="" method=post>
             <input type=hidden name=key id=key>
@@ -27,6 +29,7 @@ wget --post-data='key=KEY' '<%= downloadURL %>'
 curl -d key=KEY -O '<%= downloadURL %>'
 </pre>
 
+</div>
 
 <hr>
 
@@ -35,9 +38,14 @@ curl -d key=KEY -O '<%= downloadURL %>'
 
         <script charset="utf-8">
             var key = window.location.hash.slice(1);
-            document.getElementById("key").value = key;
-            var t = document.getElementById("terminal");
-            t.innerHTML = t.innerHTML.replace(/KEY/g, key);
+            if (key) {
+                document.getElementById("key").value = key;
+                var t = document.getElementById("terminal");
+                t.innerHTML = t.innerHTML.replace(/KEY/g, key);
+            } else {
+                document.getElementById("download-options").innerHTML = "ERROR: cannot find decryption key from the URL fragment identifier";
+            }
+
         </script>
 
     </body>

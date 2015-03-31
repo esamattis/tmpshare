@@ -173,6 +173,11 @@ module.exports = function(config) {
     });
 
     app.post("/download/:fileId/:filename", function(req, res, next) {
+
+        if (!(req.body.key || "").trim()) {
+            return res.status(400).send("decryption key missing");
+        }
+
         var filePath = path.join(config.dir, sanitize(req.params.fileId));
         stat(filePath)
         .then(function() {
