@@ -18,6 +18,10 @@ var randomBytes = Promise.promisify(crypto.randomBytes);
 var stat = Promise.promisify(fs.stat);
 var unlink = Promise.promisify(fs.unlink);
 
+function isCurl(req) {
+    return /^curl/.test(req.headers["user-agent"]);
+}
+
 
 module.exports = function(config) {
     var testFile = path.join(config.dir, "share-once-test-file");
@@ -29,7 +33,13 @@ module.exports = function(config) {
     app.use(bodyParser());
 
     app.put("/", function(req, res, next) {
-        res.status(400).send("Add trailing slash!\n");
+
+        if (isCurl(req)) {
+            return res.status(404).send("Add trailing slash if using curl -T\n");
+        }
+
+        res.status(404).send("not found\n");
+
     });
 
     app.get("/", function(req, res, next) {
@@ -96,7 +106,7 @@ module.exports = function(config) {
                     return res.status(301).send(previewURLs[0] + "\n");
                 }
 
-                if (/^curl/.test(req.headers["user-agent"])) {
+                if (isCurl(req)) {
                     return res.send(previewURLs.join("\n") + "\n");
                 }
 
