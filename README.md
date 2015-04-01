@@ -48,7 +48,7 @@ buffers uploads to disk).
 [ticket]: http://trac.nginx.org/nginx/ticket/251
 
 After the upload a download URL is generated and the encryption key is put in
-the fragment identifier. It's put there in order to avoid it appearing server
+the fragment identifier. It's put there in order to avoid it appearing in the server
 request logs when the URL is opened in the browser as fragments are never sent
 to the server. User is redirected to the URL and the encryption key is
 discarded.
