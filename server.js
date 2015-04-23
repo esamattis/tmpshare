@@ -5,6 +5,7 @@ var express = require("express");
 var path = require("path");
 var http = require("http");
 var argv = require('minimist')(process.argv.slice(2), {
+    boolean: ["trust-proxy"],
     alias: {
         p: "port",
         h: "help",
@@ -15,7 +16,7 @@ var argv = require('minimist')(process.argv.slice(2), {
 var dir = argv._[0];
 
 function help() {
-    console.log("usage: " + path.basename(__filename) + " [--port=3000] [--base=/] <dir>");
+    console.log("usage: " + path.basename(__filename) + " [--port=3000] [--base=/] [--trust-proxy] <dir>");
 }
 
 if (argv.help) {
@@ -29,6 +30,11 @@ if (!dir) {
 }
 
 var app = express();
+
+if (argv["trust-proxy"]) {
+    console.log("Trusting proxy");
+    app.enable("trust proxy");
+}
 
 var tmpshare = require("./index")({dir: dir});
 
