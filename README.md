@@ -41,7 +41,7 @@ app.use("/tmp", require("tmpshare")({
 ## How?
 
 When upload begins an encryption key is generated on the server and the file
-stream is piped through an encryption transform to the disk. The plain file is
+stream is piped through an encryption transform to the disk. The plain file
 never touches the disk (unless you use nginx ([ticket][]) or some other proxy which
 buffers uploads to disk).
 
