@@ -20,14 +20,21 @@
         </p>
 
         <p>
-            From terminal you can use wget or curl:
+            Share using this link
+        </p>
+        <input id="share" class="replace-key" type="text" value="<%= downloadURL %>#KEY" style="width: 80%"><button class="copy" data-clipboard-target="#share">to clipboard</button>
+
+        <p>
+            From terminal you can use wget
         </p>
 
-<pre id="terminal">
-wget --post-data='key=KEY' '<%= downloadURL %>'
+        <input id="wget" class="replace-key" type="text" value="wget --post-data='key=KEY' '<%= downloadURL %>'" style="width: 80%"><button class="copy" data-clipboard-target="#wget">to clipboard</button>
 
-curl -d key=KEY -O '<%= downloadURL %>'
-</pre>
+        <p>
+        or curl
+        </p>
+
+        <input id="curl" class="replace-key" type="text" value="curl -d key=KEY -O '<%= downloadURL %>'" style="width: 80%"><button class="copy" data-clipboard-target="#curl">to clipboard</button>
 
 </div>
 
@@ -35,18 +42,23 @@ curl -d key=KEY -O '<%= downloadURL %>'
 
 <a href="<%= baseUrl %>">Upload new file</a>
 
-
         <script charset="utf-8">
             var key = window.location.hash.slice(1);
             if (key) {
-                document.getElementById("key").value = key;
-                var t = document.getElementById("terminal");
-                t.innerHTML = t.innerHTML.replace(/KEY/g, key);
+                [].forEach.call(document.getElementsByClassName("replace-key"), function(t) {
+                    t.value = t.value.replace(/KEY/g, key);
+                });
             } else {
                 document.getElementById("download-options").innerHTML = "ERROR: cannot find decryption key from the URL fragment identifier";
             }
 
         </script>
-
+        <script src="/clipboard.js" charset="utf-8"></script>
+        <script charset="utf-8">
+            var clipboard = new Clipboard('.copy');
+            clipboard.on("error", function(err) {
+                alert("Copy failed. Upgrade your browser.");
+            });
+        </script>
     </body>
 </html>

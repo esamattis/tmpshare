@@ -42,6 +42,10 @@ module.exports = function(config) {
 
     });
 
+    app.get("/clipboard.js", function(req, res) {
+        res.sendfile(__dirname + "/node_modules/clipboard/dist/clipboard.min.js");
+    });
+
     app.get("/", function(req, res, next) {
         var currentURL = url.format({
             host: req.headers.host,
