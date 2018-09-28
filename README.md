@@ -1,6 +1,8 @@
 
 # tmpshare
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/epeli/tmpshare.svg)](https://greenkeeper.io/)
+
 Easily share temporary files over http
 
 Like https://transfer.sh/ but with following differences:
